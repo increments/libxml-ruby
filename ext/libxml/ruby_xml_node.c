@@ -3,6 +3,7 @@
 #include <assert.h>
 
 VALUE cXMLNode;
+const char* kLibXMLNamespace = "LibXML::";
 
 /* Document-class: LibXML::XML::Node
  *
@@ -51,6 +52,11 @@ static void rxml_node_deregisterNode(xmlNodePtr xnode)
     VALUE node = (VALUE) xnode->_private;
 
     if (TYPE(node) == T_NONE) {
+        return;
+    }
+
+    const char* className = rb_obj_classname(node);
+    if (strncmp(className, kLibXMLNamespace, strlen(kLibXMLNamespace)) != 0) {
         return;
     }
 
