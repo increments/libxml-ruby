@@ -1342,10 +1342,10 @@ static VALUE rxml_node_copy(VALUE self, VALUE deep)
 void rxml_init_node(void)
 {
   /* Register callback for main thread */
-  xmlDeregisterNodeDefault(rxml_node_deregisterNode);
+  // xmlDeregisterNodeDefault(rxml_node_deregisterNode);
 
   /* Register callback for all other threads */
-  xmlThrDefDeregisterNodeDefault(rxml_node_deregisterNode);
+  // xmlThrDefDeregisterNodeDefault(rxml_node_deregisterNode);
 
   cXMLNode = rb_define_class_under(mXML, "Node", rb_cObject);
 
