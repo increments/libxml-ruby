@@ -49,6 +49,11 @@ static void rxml_node_deregisterNode(xmlNodePtr xnode)
       then disable the dfree function so that Ruby will not
       try to free the node a second time. */
     VALUE node = (VALUE) xnode->_private;
+
+    if (TYPE(node) == T_NONE) {
+        return;
+    }
+
     RDATA(node)->data = NULL;
     RDATA(node)->dfree = NULL;
     RDATA(node)->dmark = NULL;
