@@ -55,6 +55,7 @@ static void rxml_node_deregisterNode(xmlNodePtr xnode)
         return;
     }
 
+	  rb_p(node);
     const char* className = rb_obj_classname(node);
     if (strncmp(className, kLibXMLNamespace, strlen(kLibXMLNamespace)) != 0) {
         return;
