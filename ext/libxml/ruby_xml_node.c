@@ -55,8 +55,12 @@ static void rxml_node_deregisterNode(xmlNodePtr xnode)
         return;
     }
 
-	  rb_p(node);
+	  printf("==============================\n");
+//	  rb_p(node);
+	  VALUE str = rb_obj_as_string(rb_inspect(node));
+	  printf("%s\n", StringValuePtr(str));
     const char* className = rb_obj_classname(node);
+	  printf("%s\n", className);
     if (strncmp(className, kLibXMLNamespace, strlen(kLibXMLNamespace)) != 0) {
         return;
     }
@@ -64,6 +68,7 @@ static void rxml_node_deregisterNode(xmlNodePtr xnode)
     RDATA(node)->data = NULL;
     RDATA(node)->dfree = NULL;
     RDATA(node)->dmark = NULL;
+	  printf("deregistered\n");
   }
 }
 
